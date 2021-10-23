@@ -1,4 +1,4 @@
-import { RemoveProduct } from "../../data/RemoveProduct";
+import { RemoveProduct } from "../protocols/RemoveProduct";
 
 const RemoveProductImpl: RemoveProduct = (item) => {
   return false;

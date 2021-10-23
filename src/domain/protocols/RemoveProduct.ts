@@ -1,3 +1,3 @@
-import CartItem from './models/CartItem';
+import { CartItem } from "../models";
 
 export type RemoveProduct = (item: CartItem) => boolean;

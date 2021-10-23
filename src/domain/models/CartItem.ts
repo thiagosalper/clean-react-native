@@ -1,4 +1,4 @@
-import Product from "./Product";
+import { Product } from '../../data/models';
 
 export default interface CartItem {
   qtde: number;
