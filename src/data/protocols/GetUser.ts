@@ -1,3 +1,5 @@
 import { User } from '../models';
 
-export type GetUser = () => User;
+export interface GetUser {
+  get(): User;
+};

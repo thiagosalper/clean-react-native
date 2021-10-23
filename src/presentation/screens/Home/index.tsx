@@ -1,41 +1,43 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Button, Text } from 'native-base';
-import { View, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { GetUser, ListProducts } from '../../../data/protocols';
+import { Button, FlatList, Text } from 'native-base';
+import { useInjection } from 'inversify-react';
+import { TYPES } from '../../../domain/protocols/types';
+import { HomeProps } from '../../../domain/protocols/HomeProps';
+import { 
+  Safe,
+  Container,
+  Header,
+  ProductView,
+} from './styles';
 
-const HomeScreen: React.FC<{getUser: GetUser; listProducts: ListProducts}> = ({ getUser, listProducts }) => {
-
-  const user = getUser();
-  const products = listProducts();
+const HomeScreen: React.FC = () => {
+  const homeVM: HomeProps = useInjection(TYPES.HomeProps);
 
   return (
-    <SafeAreaView style={{flex:1}}>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <Text>Welcome {user.name}</Text>
-        <Text fontSize={'3xl'}>Little Store</Text>
+    <Safe>
+      <Header>
+        <Text fontSize={'3xl'} color={'white'}>welcome {homeVM.getUser().name}!</Text>
+        <Button>go to your cart [0]</Button>
+      </Header>
+      <Container>  
+        <Text fontSize={'3xl'}>new products</Text>
 
-        {products.map((product, index) => (
-          <View key={index}>
-            <Text>{product.name}</Text>
-            <Text>{product.description}</Text>
-            <Text>{product.price}</Text>
-          </View>
-        ))}
-
-        <Button>Go to Cart</Button>
-      </View>
-    </SafeAreaView>
+        <ProductView.list>
+          <FlatList
+            ItemSeparatorComponent={() => <ProductView.separator />}
+            data={homeVM.listProducts()}
+            renderItem={({item}) => (
+            <ProductView.item>
+              <Text>{item.name}</Text>
+              <Text>{item.description}</Text>
+              <Text>{item.price}</Text>
+            </ProductView.item>
+            )}  
+            />
+        </ProductView.list>
+      </Container>
+    </Safe>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-  },
-});

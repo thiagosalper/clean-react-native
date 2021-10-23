@@ -1,3 +1,5 @@
 import { Product} from '../models';
 
-export type ListProducts = () => Product[];
+export interface ListProducts {
+  get(): Product[];
+};
