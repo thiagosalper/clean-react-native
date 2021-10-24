@@ -9,9 +9,18 @@ import {
   Header,
   ProductView,
 } from './styles';
+import { Product } from '../../../data/models';
+import { useNavigation } from '@react-navigation/core';
+import { MainNavProps } from '../../../router';
 
 const HomeScreen: React.FC = () => {
   const homeVM: HomeProps = useInjection(TYPES.HomeProps);
+  const navigation = useNavigation<MainNavProps>();
+
+  function actionProduct(product: Product) {
+    homeVM.chooseProduct(product);
+    navigation.navigate('ProductRoute', { product });
+  }
 
   return (
     <Safe>
@@ -27,10 +36,9 @@ const HomeScreen: React.FC = () => {
             ItemSeparatorComponent={() => <ProductView.separator />}
             data={homeVM.listProducts()}
             renderItem={({item}) => (
-            <ProductView.item>
-              <Text>{item.name}</Text>
-              <Text>{item.description}</Text>
-              <Text>{item.price}</Text>
+            <ProductView.item onPress={() => actionProduct(item)}>
+              <Text color={'black'} fontWeight={'bold'}>{item.name}</Text>
+              <Text color={'red'}>${item.price}</Text>
             </ProductView.item>
             )}  
             />

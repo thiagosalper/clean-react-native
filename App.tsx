@@ -1,15 +1,14 @@
-import { NativeBaseProvider } from 'native-base';
 import React from 'react';
-import { ListProductsImpl, GetUserImpl } from './src/data/usecases';
-import { HomeScreen } from './src/presentation/screens';
+import { NativeBaseProvider } from 'native-base';
 import { Provider } from 'inversify-react';
 import { InjectContainer } from './src/providers/InjectContainer';
+import { MainNav } from './src/router';
 
 const App = () => {
   return (
     <NativeBaseProvider>
       <Provider container={InjectContainer}>
-        <HomeScreen />
+        <MainNav />
       </Provider>
     </NativeBaseProvider>
   );

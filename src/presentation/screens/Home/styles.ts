@@ -20,8 +20,8 @@ export const ProductView = {
   list: styled.View`
     flex: 2;
   `,
-  item: styled.View`
-    backgroundColor: #f2f2f2;
+  item: styled.TouchableOpacity`
+    backgroundColor: #e2e2e2;
     padding: 8px;
     borderRadius: 8px;
   `,

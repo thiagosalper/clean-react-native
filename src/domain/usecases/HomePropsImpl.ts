@@ -12,12 +12,15 @@ class HomePropsImpl implements HomeProps {
     this._userProvider = userProvider;
     this._productProvider = productProvider;
   }
-
+  
   getUser(): User {
     return this._userProvider.get();
   }
   listProducts(): Product[] {
     return this._productProvider.get();
+  }
+  chooseProduct(product: Product): void {
+    console.log(product);
   }
 }
 
