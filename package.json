@@ -1,11 +1,29 @@
 {
+  "description": "An experimental React Native project using clean architecture and SOLID principles.",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "yarn jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thiagosalper/clean-react-native.git"
+  },
+  "keywords": [
+    "clean architecture",
+    "react native",
+    "typescript",
+    "dependency injection",
+    "dependency inversion",
+  ],
+  "author": "Thiago Pereira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thiagosalper/clean-react-native/issues"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
@@ -30,9 +48,14 @@
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
     "typescript": "~4.3.5"
   },
   "private": true
