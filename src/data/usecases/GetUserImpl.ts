@@ -14,13 +14,4 @@ class GetUserImpl implements GetUser {
   }
 }
 
-// const GetUserImpl: GetUser = () => {
-//   const user: User = {
-//     name: 'Thiago',
-//     email: 'thiago_salper@hotmail.com',
-//   }
-
-//   return user;
-// }
-
 export default GetUserImpl;

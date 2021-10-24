@@ -12,6 +12,8 @@ import {
 import { Product } from '../../../data/models';
 import { useNavigation } from '@react-navigation/core';
 import { MainNavProps } from '../../../router';
+import { useRecoilValue } from 'recoil';
+import { cartCountState } from '../../../repository/state';
 
 const HomeScreen: React.FC = () => {
   const homeVM: HomeProps = useInjection(TYPES.HomeProps);
@@ -22,11 +24,13 @@ const HomeScreen: React.FC = () => {
     navigation.navigate('ProductRoute', { product });
   }
 
+  const cartCount = useRecoilValue(cartCountState);
+
   return (
     <Safe>
       <Header>
         <Text fontSize={'3xl'} color={'white'}>welcome {homeVM.getUser().name}!</Text>
-        <Button>go to your cart [0]</Button>
+        <Button>go to your cart [{cartCount}]</Button>
       </Header>
       <Container>  
         <Text fontSize={'3xl'}>new products</Text>
