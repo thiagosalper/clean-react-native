@@ -19,8 +19,9 @@ class HomePropsImpl implements HomeProps {
   listProducts(): Product[] {
     return this._productProvider.get();
   }
-  chooseProduct(product: Product): void {
+  chooseProduct(product: Product, callback: () => void): void {
     console.log(product);
+    callback();
   }
 }
 

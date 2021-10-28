@@ -18,7 +18,7 @@
     "react native",
     "typescript",
     "dependency injection",
-    "dependency inversion",
+    "dependency inversion"
   ],
   "author": "Thiago Pereira",
   "license": "MIT",

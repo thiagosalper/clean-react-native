@@ -1,5 +1,5 @@
 import { User } from '../models';
 
 export interface GetUser {
-  get(): User;
+  get(email: string, password: string): User | Error;
 };

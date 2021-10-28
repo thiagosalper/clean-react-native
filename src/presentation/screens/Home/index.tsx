@@ -19,9 +19,8 @@ const HomeScreen: React.FC = () => {
   const homeVM: HomeProps = useInjection(TYPES.HomeProps);
   const navigation = useNavigation<MainNavProps>();
 
-  function actionProduct(product: Product) {
-    homeVM.chooseProduct(product);
-    navigation.navigate('ProductRoute', { product });
+  function navigateToProduct(product: Product) {
+    homeVM.chooseProduct(product, () => navigation.navigate('ProductRoute', { product }));
   }
 
   const cartCount = useRecoilValue(cartCountState);
@@ -40,7 +39,7 @@ const HomeScreen: React.FC = () => {
             ItemSeparatorComponent={() => <ProductView.separator />}
             data={homeVM.listProducts()}
             renderItem={({item}) => (
-            <ProductView.item onPress={() => actionProduct(item)}>
+            <ProductView.item onPress={() => navigateToProduct(item)}>
               <Text color={'black'} fontWeight={'bold'}>{item.name}</Text>
               <Text color={'red'}>${item.price}</Text>
             </ProductView.item>
