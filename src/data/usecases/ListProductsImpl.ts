@@ -1,15 +1,18 @@
 import { injectable } from 'inversify';
+import { ProductRepository } from '../../domain/repository/ProductRepository';
 import { Product } from '../models';
 import { ListProducts } from '../protocols';
 
 @injectable()
 class ListProductsImpl implements ListProducts {
-  get() {
-    const products: Product[] = [
-      { name: 'Produto Teste 1', description: 'Description ...', price: 1000 },
-      { name: 'Produto Teste 1', description: 'Description ...', price: 1000 },
-      { name: 'Produto Teste 1', description: 'Description ...', price: 1000 },
-    ];
+  private readonly _productsRepository: ProductRepository;
+
+  constructor(productRepository: ProductRepository) {
+    this._productsRepository = productRepository;
+  }
+
+  async get() {
+    const products = await this._productsRepository.get();
   
     return products;
   }
